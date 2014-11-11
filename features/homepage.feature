@@ -6,4 +6,9 @@ Feature: In order to have some fun
   Scenario: Registering the first player
     Given I am on the homepage
     When I register to play the game
+    Then I should be asked to enter some ships
+    
+  Scenario: Placing Ships
+    Given I have registered
+    And I have placed my ships
     Then I should wait for another player to join

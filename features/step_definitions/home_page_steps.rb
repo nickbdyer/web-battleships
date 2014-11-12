@@ -1,9 +1,16 @@
+require 'capybara'
+
 Given(/^I am on the homepage$/) do
   visit '/'
 end
 
 When(/^I register to play the game$/) do
   fill_in 'player_name', with: 'Nick'
+  click_button 'Register'
+end
+
+When(/^Another player registers to play the game$/) do
+  fill_in 'player_name', with: 'Ben'
   click_button 'Register'
 end
 
@@ -18,7 +25,11 @@ end
 Given(/^I have registered$/) do
   visit '/'
   step("I register to play the game")
+end
 
+Given(/^Another player has registered$/) do
+  visit '/'
+  step("Another player registers to play the game")
 end
 
 Given(/^I have placed my ships$/) do
@@ -38,4 +49,17 @@ Given(/^I have placed my ships$/) do
   select('1', from: 'ship_five_yaxis')
   select('vertical', from: 'ship_five_orientation')
   click_button 'Place Ships'
-end 
+end
+
+Given(/^I am on the waiting page$/) do
+  visit '/waiting'
+end
+
+Given(/^another player joins$/) do
+  step("I have registered")
+  step("Another player has registered")
+end
+
+Then(/^I should be redirected to the play page$/) do
+  expect(page).to have_content("Play Game")
+end

@@ -1,0 +1,14 @@
+body {
+  background-color: blue;
+}
+
+h1 {
+  font-family:sans-serif;
+  letter-spacing:-1px;
+  font-size:40px;
+}
+
+table {
+  border-spacing: 2px;
+  border-color: gray;
+}

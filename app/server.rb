@@ -4,6 +4,7 @@ require_relative '../lib/game'
 require_relative '../lib/board'
 require_relative '../lib/cell'
 require_relative '../lib/ship'
+require_relative '../lib/water'
 
 class Battleships < Sinatra::Base
 
@@ -20,7 +21,7 @@ class Battleships < Sinatra::Base
 
     @player = Player.new
     @player.name = params[:player_name]
-    @player.board = Board.new(Cell)
+    @player.board = Board.new(Cell, Water)
     GAME.add_player(@player)
 
     session[:player1] = GAME.player1.object_id
@@ -72,11 +73,14 @@ class Battleships < Sinatra::Base
 
   get '/waiting' do
     redirect('/play') if GAME.ready?
+    @player = GAME.player1 if GAME.player1.object_id == session[:player1]
     erb :waiting, :layout => :layout_refresh
   end    
 
   get '/play' do
-    p session
+    @player = GAME.player1 if GAME.player1.object_id == session[:player1]
+    @player = GAME.player2 if GAME.player2.object_id == session[:player2]
+
     erb :play
   end
 

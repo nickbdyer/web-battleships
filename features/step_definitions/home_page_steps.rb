@@ -1,5 +1,14 @@
 require 'capybara'
 
+def in_browser(name)
+  old_session = Capybara.session_name
+
+  Capybara.session_name = name
+  yield
+
+  Capybara.session_name = old_session
+end
+
 Given(/^I am on the homepage$/) do
   visit '/'
 end
@@ -10,12 +19,10 @@ When(/^I register to play the game$/) do
 end
 
 When(/^Another player registers to play the game$/) do
-  fill_in 'player_name', with: 'Ben'
-  click_button 'Register'
-end
-
-Then(/^I should wait for another player to join$/) do
-  expect(page).to have_content 'Waiting for second player, Nick!'
+  in_browser(:two) do
+    fill_in 'player_name', with: 'Ben'
+    click_button 'Register'
+  end
 end
 
 Then(/^I should be asked to enter some ships$/) do
@@ -25,62 +32,74 @@ end
 Given(/^I have registered$/) do
   visit '/'
   step("I register to play the game")
+  expect(page).to have_content ("Please enter the coordinates and orientation of the ships you want to place.")
 end
 
 Given(/^Another player has registered$/) do
-  visit '/'
-  step("Another player registers to play the game")
+  in_browser(:two) do
+    visit '/'
+    step("Another player registers to play the game")
+  end
 end
 
 Given(/^I have placed my ships$/) do
-  select('A', from: 'ship_one_xaxis')
-  select('1', from: 'ship_one_yaxis')
-  select('vertically', from: 'ship_one_orientation')
-  select('B', from: 'ship_two_xaxis')
-  select('1', from: 'ship_two_yaxis')
-  select('vertically', from: 'ship_two_orientation')
-  select('C', from: 'ship_three_xaxis')
-  select('1', from: 'ship_three_yaxis')
-  select('vertically', from: 'ship_three_orientation')
-  select('D', from: 'ship_four_xaxis')
-  select('1', from: 'ship_four_yaxis')
-  select('vertically', from: 'ship_four_orientation')
-  select('E', from: 'ship_five_xaxis')
-  select('1', from: 'ship_five_yaxis')
-  select('vertically', from: 'ship_five_orientation')
-  click_button 'Place Ships'
+  in_browser(:one) do
+    step("I have registered")
+    select('A', from: 'ship_one_xaxis')
+    select('1', from: 'ship_one_yaxis')
+    select('vertically', from: 'ship_one_orientation')
+    select('B', from: 'ship_two_xaxis')
+    select('1', from: 'ship_two_yaxis')
+    select('vertically', from: 'ship_two_orientation')
+    select('C', from: 'ship_three_xaxis')
+    select('1', from: 'ship_three_yaxis')
+    select('vertically', from: 'ship_three_orientation')
+    select('D', from: 'ship_four_xaxis')
+    select('1', from: 'ship_four_yaxis')
+    select('vertically', from: 'ship_four_orientation')
+    select('E', from: 'ship_five_xaxis')
+    select('1', from: 'ship_five_yaxis')
+    select('vertically', from: 'ship_five_orientation')
+    click_button 'Place Ships'
+  end
 end
 
 Given(/^Another player has placed their ships$/) do
-  select('A', from: 'ship_one_xaxis')
-  select('1', from: 'ship_one_yaxis')
-  select('vertically', from: 'ship_one_orientation')
-  select('B', from: 'ship_two_xaxis')
-  select('1', from: 'ship_two_yaxis')
-  select('vertically', from: 'ship_two_orientation')
-  select('C', from: 'ship_three_xaxis')
-  select('1', from: 'ship_three_yaxis')
-  select('vertically', from: 'ship_three_orientation')
-  select('D', from: 'ship_four_xaxis')
-  select('1', from: 'ship_four_yaxis')
-  select('vertically', from: 'ship_four_orientation')
-  select('E', from: 'ship_five_xaxis')
-  select('1', from: 'ship_five_yaxis')
-  select('vertically', from: 'ship_five_orientation')
-  click_button 'Place Ships'
+  in_browser(:two) do
+    step("Another player has registered")
+    select('A', from: 'ship_one_xaxis')
+    select('1', from: 'ship_one_yaxis')
+    select('vertically', from: 'ship_one_orientation')
+    select('B', from: 'ship_two_xaxis')
+    select('1', from: 'ship_two_yaxis')
+    select('vertically', from: 'ship_two_orientation')
+    select('C', from: 'ship_three_xaxis')
+    select('1', from: 'ship_three_yaxis')
+    select('vertically', from: 'ship_three_orientation')
+    select('D', from: 'ship_four_xaxis')
+    select('1', from: 'ship_four_yaxis')
+    select('vertically', from: 'ship_four_orientation')
+    select('E', from: 'ship_five_xaxis')
+    select('1', from: 'ship_five_yaxis')
+    select('vertically', from: 'ship_five_orientation')
+    click_button 'Place Ships'
+  end
 end
 
-Given(/^I am on the waiting page$/) do
-  visit '/waiting'
+Given(/^I am waiting for another player to join$/) do
+  in_browser(:one) do
+    expect(page).to have_content 'Waiting for second player, Nick!'
+  end
 end
 
-Given(/^another player joins$/) do
-  step("I have registered")
-  step("I have placed my ships")
-  step("Another player has registered")
-  step("Another player has placed their ships")
+When(/^Another player joins$/) do
+  in_browser(:two) do
+    step("Another player has placed their ships")
+  end
 end
 
 Then(/^I should be redirected to the play page$/) do
-  expect(page).to have_content("Play Game")
+  in_browser(:one) do
+    expect(page).to have_content("Play Game")
+  end
 end

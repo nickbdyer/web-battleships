@@ -6,9 +6,10 @@ describe Board do
 	let(:second_cell){double :second_cell, :content= => nil,content: nil, hit?: nil}
 	let(:third_cell){double :second_cell, :content= => nil, hit?: nil}
 	let(:cell_class){double :cell_class, :new => cell}
+	let(:water_class){double :water_class, :new => water}
 	let(:ship){double :ship, size: 2, sunk?: false, floating?: true }
 	let(:second_ship){double :ship, size: 2, sunk?: false }
-	let(:board){Board.new(cell_class)}
+	let(:board){Board.new(cell_class, water_class)}
 
 	it "can have a grid of 100 places" do
 		expect(board.grid.count).to eq 100

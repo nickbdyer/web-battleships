@@ -6,6 +6,10 @@ class Game
 		player1, player2 = nil, nil
 	end
 
+	def players
+	  [player1, player2]
+	end
+
 	def add_player(player)
 		self.player1 ? self.player2 = player : self.player1 = player unless has_two_players?
 	end

@@ -12,5 +12,7 @@ Feature: In order to have some fun
     Given I have placed my ships
     And I am waiting for another player to join
     When Another player joins
-    Then I should be redirected to the play page
+    Then the second player should go straight to the game page
+
+
 

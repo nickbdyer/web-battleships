@@ -10,12 +10,16 @@ def in_browser(name)
 end
 
 Given(/^I am on the homepage$/) do
-  visit '/'
+  in_browser(:one) do
+    visit '/'
+  end
 end
 
 When(/^I register to play the game$/) do
-  fill_in 'player_name', with: 'Nick'
-  click_button 'Register'
+  in_browser(:one) do
+    fill_in 'player_name', with: 'Nick'
+    click_button 'Register'
+  end
 end
 
 When(/^Another player registers to play the game$/) do
@@ -26,13 +30,16 @@ When(/^Another player registers to play the game$/) do
 end
 
 Then(/^I should be asked to enter some ships$/) do
-  expect(page).to have_content ("Please enter the coordinates and orientation of the ships you want to place.")
+  in_browser(:one) do
+    expect(page).to have_content ("Please enter the coordinates and orientation of the ships you want to place.")
+  end
 end
 
 Given(/^I have registered$/) do
-  visit '/'
-  step("I register to play the game")
-  expect(page).to have_content ("Please enter the coordinates and orientation of the ships you want to place.")
+  in_browser(:one) do
+    step("I register to play the game")
+    expect(page).to have_content ("Please enter the coordinates and orientation of the ships you want to place.")
+  end
 end
 
 Given(/^Another player has registered$/) do
@@ -43,8 +50,11 @@ Given(/^Another player has registered$/) do
 end
 
 Given(/^I have placed my ships$/) do
+  visit '/reset_game'
   in_browser(:one) do
-    step("I have registered")
+    visit '/'
+    fill_in 'player_name', with: 'Nick'
+    click_on 'Register'
     select('A', from: 'ship_one_xaxis')
     select('1', from: 'ship_one_yaxis')
     select('vertically', from: 'ship_one_orientation')
@@ -66,7 +76,9 @@ end
 
 Given(/^Another player has placed their ships$/) do
   in_browser(:two) do
-    step("Another player has registered")
+    visit '/'
+    fill_in 'player_name', with: 'Ben'
+    click_on 'Register'
     select('A', from: 'ship_one_xaxis')
     select('1', from: 'ship_one_yaxis')
     select('vertically', from: 'ship_one_orientation')
@@ -98,8 +110,10 @@ When(/^Another player joins$/) do
   end
 end
 
-Then(/^I should be redirected to the play page$/) do
-  in_browser(:one) do
+Then(/^the second player should go straight to the game page$/) do
+  in_browser(:two) do
     expect(page).to have_content("Play Game")
   end
 end
+
+

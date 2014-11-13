@@ -24,8 +24,7 @@ class Battleships < Sinatra::Base
     @player.board = Board.new(Cell, Water)
     GAME.add_player(@player)
 
-    session[:player1] = GAME.player1.object_id
-    session[:player2] = GAME.player2.object_id if !GAME.player2.nil?
+    session[:me] = @player.object_id
   
     if GAME.ready?
       redirect '/'
@@ -37,8 +36,14 @@ class Battleships < Sinatra::Base
 
   post '/waiting' do
 
-    @player = GAME.player1 if GAME.player1.object_id == session[:player1]
-    @player = GAME.player2 if GAME.player2.object_id == session[:player2]
+    # puts '==' * 30
+    # puts GAME.player1.object_id
+    # puts GAME.player2.object_id
+    # puts GAME.players.map{|player| player.object_id}.inspect
+
+    # puts session[:me].inspect
+
+    @player = GAME.players.select { |player| player.object_id == session[:me] }.first
 
     patrol_boat                  = Ship.patrol_boat
     patrol_boat_origin           = (params[:ship_one_xaxis] + params[:ship_one_yaxis]).to_sym
@@ -73,15 +78,18 @@ class Battleships < Sinatra::Base
 
   get '/waiting' do
     redirect('/play') if GAME.ready?
-    @player = GAME.player1 if GAME.player1.object_id == session[:player1]
+    @player = GAME.players.select { |player| player.object_id == session[:me] }.first
     erb :waiting, :layout => :layout_refresh
   end    
 
   get '/play' do
-    @player = GAME.player1 if GAME.player1.object_id == session[:player1]
-    @player = GAME.player2 if GAME.player2.object_id == session[:player2]
+    @player = GAME.players.select { |player| player.object_id == session[:me] }.first
 
     erb :play
+  end
+
+  get '/reset_game' do
+    GAME = Game.new
   end
 
   # start the server if ruby file executed directly

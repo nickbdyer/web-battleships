@@ -3,29 +3,12 @@ Play Game
 <table style="border:1px;">
   <tr>
     <th></th>
-    <th>A</th> 
-    <th>B</th>
-    <th>C</th>
-    <th>D</th>
-    <th>E</th>
-    <th>F</th>
-    <th>G</th>
-    <th>H</th>
-    <th>I</th>
-    <th>J</th>
+    <% letter = "A" %>
+    <% 10.times do %>
+    <th><%= letter %></th>
+    <% letter = letter.next %>
+    <% end %>
   </tr>
- 
-  <% @row_values = @player.board.grid.values.map {|cell| cell.content.class } %>
-
-  <% row_vales.slice('10') {|e| e }
-
-
-  <% row_number %>
-  <tr>
-    <td> <%= row_number %> </td>
-
-    <td></td> 
-
-  </tr>
-
+    
 </table>
+

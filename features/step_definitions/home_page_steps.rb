@@ -57,19 +57,19 @@ Given(/^I have placed my ships$/) do
     click_on 'Register'
     select('A', from: 'ship_one_xaxis')
     select('1', from: 'ship_one_yaxis')
-    select('vertically', from: 'ship_one_orientation')
+    select('horizontally', from: 'ship_one_orientation')
     select('B', from: 'ship_two_xaxis')
     select('1', from: 'ship_two_yaxis')
-    select('vertically', from: 'ship_two_orientation')
+    select('horizontally', from: 'ship_two_orientation')
     select('C', from: 'ship_three_xaxis')
     select('1', from: 'ship_three_yaxis')
-    select('vertically', from: 'ship_three_orientation')
+    select('horizontally', from: 'ship_three_orientation')
     select('D', from: 'ship_four_xaxis')
     select('1', from: 'ship_four_yaxis')
-    select('vertically', from: 'ship_four_orientation')
+    select('horizontally', from: 'ship_four_orientation')
     select('E', from: 'ship_five_xaxis')
     select('1', from: 'ship_five_yaxis')
-    select('vertically', from: 'ship_five_orientation')
+    select('horizontally', from: 'ship_five_orientation')
     click_button 'Place Ships'
   end
 end
@@ -81,19 +81,19 @@ Given(/^Another player has placed their ships$/) do
     click_on 'Register'
     select('A', from: 'ship_one_xaxis')
     select('1', from: 'ship_one_yaxis')
-    select('vertically', from: 'ship_one_orientation')
+    select('horizontally', from: 'ship_one_orientation')
     select('B', from: 'ship_two_xaxis')
     select('1', from: 'ship_two_yaxis')
-    select('vertically', from: 'ship_two_orientation')
+    select('horizontally', from: 'ship_two_orientation')
     select('C', from: 'ship_three_xaxis')
     select('1', from: 'ship_three_yaxis')
-    select('vertically', from: 'ship_three_orientation')
+    select('horizontally', from: 'ship_three_orientation')
     select('D', from: 'ship_four_xaxis')
     select('1', from: 'ship_four_yaxis')
-    select('vertically', from: 'ship_four_orientation')
+    select('horizontally', from: 'ship_four_orientation')
     select('E', from: 'ship_five_xaxis')
     select('1', from: 'ship_five_yaxis')
-    select('vertically', from: 'ship_five_orientation')
+    select('horizontally', from: 'ship_five_orientation')
     click_button 'Place Ships'
   end
 end

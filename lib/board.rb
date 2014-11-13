@@ -3,8 +3,8 @@ class Board
 
 	def initialize(content, more_content)
 		@grid = {}
-		[*"A".."J"].each do |l|
-			[*1..10].each {|n| @grid["#{l}#{n}".to_sym] = content.new(more_content)}
+		[*1..10].each do |n|
+			[*"A".."J"].each {|l| @grid["#{l}#{n}".to_sym] = content.new(more_content)}
 		end
 	end
 

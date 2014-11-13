@@ -11,11 +11,9 @@ Play Game
   </tr>
     <% rows_array = @player.board.grid.values %>
         <% rows = rows_array.each_slice(10).map { |e| e } %>
-            <% rows.each do |array| %>
-                <% number = 1 %>
+            <% rows.each_with_index do |array, index| %>
                     <tr>
-                        <th> <%= number %> </th> 
-                            <% number.next %>
+                        <th> <%= index + 1 %> </th> 
                             <% array.each do |cell| %>
                                 <% if cell.content.class == Water %> 
                                     <td bgcolor="light-blue"></td>

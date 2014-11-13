@@ -50,7 +50,7 @@ describe Ship do
 
 	it "can create an patrol boat" do 
 		pb = Ship.patrol_boat
-		expect(pb.size).to eq 5
+		expect(pb.size).to eq 2
 	end
 
 

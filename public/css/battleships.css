@@ -1,14 +1,25 @@
 body {
-  background-color: blue;
+  background-color: white;
 }
 
 h1 {
   font-family:sans-serif;
   letter-spacing:-1px;
   font-size:40px;
+  position:center;
 }
 
-table {
+table, tr, td {
+  border: 1px solid black;
   border-spacing: 2px;
   border-color: gray;
+  border-collapse: collapse;
+}
+
+tr {
+  height:25px;
+}
+
+td {
+  width:25px;
 }

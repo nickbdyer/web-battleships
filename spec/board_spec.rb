@@ -32,7 +32,7 @@ describe Board do
 	end
 
 	it "can place a ship verticall" do 
-		board.grid[:B1] = second_cell
+		board.grid[:A2] = second_cell
 		expect(second_cell).to receive(:content=).with(ship)
 		board.place(ship, :A1, :vertically)
 	end

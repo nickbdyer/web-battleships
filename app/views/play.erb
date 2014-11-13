@@ -9,6 +9,21 @@ Play Game
     <% letter = letter.next %>
     <% end %>
   </tr>
-    
+    <% rows_array = @player.board.grid.values %>
+        <% rows = rows_array.each_slice(10).map { |e| e } %>
+            <% rows.each do |array| %>
+                <% number = 1 %>
+                    <tr>
+                        <th> <%= number %> </th> 
+                            <% number.next %>
+                            <% array.each do |cell| %>
+                                <% if cell.content.class == Water %> 
+                                    <td bgcolor="light-blue"></td>
+                                <% elsif cell.content.class == Ship %>
+                                    <td bgcolor="#505050"></td>
+                                <% end %>
+                            <% end %>    
+                    </tr>
+            <% end %>
 </table>
 

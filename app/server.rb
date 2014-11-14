@@ -74,8 +74,13 @@ class Battleships < Sinatra::Base
     @player = GAME.players.select { |player| player.object_id == session[:me] }.first
     @opponent = GAME.players.select { |player| player.object_id != session[:me] }.first
     shot_coords = (params[:x_coords] + params[:y_coords]).to_sym
-    GAME.shoots(shot_coords) 
-    redirect '/play'
+    begin
+      GAME.shoots(shot_coords) 
+      redirect '/play'
+    rescue
+      redirect '/play'
+    end
+    
   end
 
   get '/reset_game' do

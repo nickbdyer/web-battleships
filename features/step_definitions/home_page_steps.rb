@@ -116,4 +116,31 @@ Then(/^the second player should go straight to the game page$/) do
   end
 end
 
+Given(/^it is my turn$/) do
+  visit '/reset_game'
+  in_browser(:one) do
+    step("I have placed my ships")
+  end
+  in_browser(:two) do
+    step("Another player has placed their ships")
+  end
+    in_browser(:one) do
+    visit "/play"
+    expect(page).to have_content("It is your turn")
+  end
+end
+
+When(/^I shoot another players board$/) do
+  in_browser(:one) do
+    select('A', from: 'x_coords')
+    select('1', from: 'y_coords')
+    click_button 'FIRE!'
+  end
+end
+
+Then(/^I should see what I hit$/) do
+  in_browser(:one) do
+    expect(page).to have_selector(".hitship")
+  end
+end
 

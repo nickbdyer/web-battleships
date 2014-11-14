@@ -97,7 +97,7 @@
                   <% if cell.content.class == Water && cell.hit? %> 
                     <td bgcolor="yellow"></td>
                   <% elsif cell.content.class == Ship && cell.hit? %>
-                    <td bgcolor="red"></td>
+                    <td class="hitship"></td>
                   <% elsif cell.content.class == Ship  %>
                     <td bgcolor="#0066FF"></td>  
                   <% elsif cell.content.class == Water %> 

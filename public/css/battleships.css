@@ -52,3 +52,11 @@ body {
 #opponent-board {
   display: block;
 }
+
+.hitship {
+  bgcolor:red;
+}
+
+#hitship{
+  bgcolor:red;
+}

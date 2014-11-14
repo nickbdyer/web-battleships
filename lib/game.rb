@@ -41,7 +41,7 @@ class Game
 private 
 
 	def both_players_have_five_ships?
-		(player1.board.ships_count == 1) and (player2.board.ships_count == 1) 
+		(player1.board.ships_count == 5) and (player2.board.ships_count == 5) 
 	end
 
 	def both_players_have_boards?

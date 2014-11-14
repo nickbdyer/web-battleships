@@ -14,5 +14,9 @@ Feature: In order to have some fun
     When Another player joins
     Then the second player should go straight to the game page
 
+  Scenario: Playing the game
+    Given it is my turn
+    When I shoot another players board
+    Then I should see what I hit
 
 

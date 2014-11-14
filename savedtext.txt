@@ -1,0 +1,137 @@
+Ship Two: <select name="ship_two_orientation">
+            <option value="vertically">vertically</option>
+            <option value="horizontally">horizontally</option>
+          </select>
+          <select name="ship_two_xaxis">
+            <option value="A">A</option>
+            <option value="B" selected="selected">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+            <option value="H">H</option>
+            <option value="I">I</option>
+            <option value="J">J</option>
+          </select>          
+          <select name="ship_two_yaxis">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <p>
+Ship Three: <select name="ship_three_orientation">
+            <option value="vertically">vertically</option>
+            <option value="horizontally">horizontally</option>
+          </select>
+          <select name="ship_three_xaxis">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C" selected="selected">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+            <option value="H">H</option>
+            <option value="I">I</option>
+            <option value="J">J</option>
+          </select>          
+          <select name="ship_three_yaxis">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <p>
+Ship Four: <select name="ship_four_orientation">
+            <option value="vertically">vertically</option>
+            <option value="horizontally">horizontally</option>
+          </select>
+          <select name="ship_four_xaxis">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D" selected="selected">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+            <option value="H">H</option>
+            <option value="I">I</option>
+            <option value="J">J</option>
+          </select>          
+          <select name="ship_four_yaxis">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <p>
+Ship Five: <select name="ship_five_orientation">
+            <option value="vertically">vertically</option>
+            <option value="horizontally">horizontally</option>
+          </select>
+          <select name="ship_five_xaxis">
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E" selected="selected">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+            <option value="H">H</option>
+            <option value="I">I</option>
+            <option value="J">J</option>
+          </select>          
+          <select name="ship_five_yaxis">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+
+
+
+           submarine                    = Ship.submarine
+    submarine_origin             = (params[:ship_two_xaxis] + params[:ship_two_yaxis]).to_sym
+    submarine_orientation        = params[:ship_two_orientation].to_sym
+    @player.board.place(Ship.submarine, submarine_origin, submarine_orientation)
+
+    destroyer                    = Ship.destroyer
+    destroyer_origin             = (params[:ship_three_xaxis] + params[:ship_three_yaxis]).to_sym
+    destroyer_orientation        = params[:ship_three_orientation].to_sym
+    @player.board.place(Ship.destroyer, destroyer_origin, destroyer_orientation)
+    
+    battleship                   = Ship.battleship
+    battleship_origin            = (params[:ship_four_xaxis] + params[:ship_four_yaxis]).to_sym
+    battleship_orientation       = params[:ship_four_orientation].to_sym
+    @player.board.place(Ship.battleship, battleship_origin, battleship_orientation)
+
+    aircraft_carrier             = Ship.aircraft_carrier
+    aricraft_carrier_origin      = (params[:ship_five_xaxis] + params[:ship_five_yaxis]).to_sym
+    aricraft_carrier_orientation = params[:ship_five_orientation].to_sym
+    @player.board.place(Ship.aircraft_carrier, aricraft_carrier_origin, aricraft_carrier_orientation)

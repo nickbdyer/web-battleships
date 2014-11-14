@@ -4,8 +4,12 @@
     <title>
       BattleGeeks
     </title>
-    <meta http-equiv="refresh" content="3">
     <link rel="stylesheet" type="text/css" href="css/battleships.css">
+    <% if !GAME.ready? || @player != GAME.turn  %>
+      <meta http-equiv="refresh" content="3">
+    <% else %>
+    <% end %>
+    
 
   </head>
   <body>

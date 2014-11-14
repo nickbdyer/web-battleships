@@ -1,36 +1,78 @@
 <div id='player-container'>
-    <div id='player-board'>
-    <table style="border:1px;">
-    <tr><th colspan="11"> Player Board </th> </tr>
-      <tr>
-        <th></th>
-        <% letter = "A" %>
-        <% 10.times do %>
-        <th><%= letter %></th>
-        <% letter = letter.next %>
-        <% end %>
-      </tr>
-        <% rows_array = @player.board.grid.values %>
-            <% rows = rows_array.each_slice(10).map { |e| e } %>
-                <% rows.each_with_index do |array, index| %>
-                        <tr>
-                            <th> <%= index + 1 %> </th> 
-                                <% array.each do |cell| %>
-                                    <% if cell.content.class == Water %> 
-                                        <td bgcolor="#0066FF"></td>
-                                    <% elsif cell.content.class == Ship %>
-                                        <td bgcolor="#505050"></td>
-                                    <% end %>
-                                <% end %>    
-                        </tr>
-                <% end %>
-    </table>
-    </div>
+  <div id='player-board'>
+  <table style="border:1px;">
+  <tr><th colspan="11"> Player Board </th> </tr>
+    <tr>
+      <th></th>
+      <% letter = "A" %>
+      <% 10.times do %>
+      <th><%= letter %></th>
+      <% letter = letter.next %>
+      <% end %>
+    </tr>
+      <% rows_array = @player.board.grid.values %>
+        <% rows = rows_array.each_slice(10).map { |e| e } %>
+          <% rows.each_with_index do |array, index| %>
+            <tr>
+              <th> <%= index + 1 %> </th> 
+                <% array.each do |cell| %>
+                  <% if cell.content.class == Water && cell.hit? %> 
+                    <td bgcolor="yellow"></td>
+                  <% elsif cell.content.class == Ship && cell.hit? %>
+                    <td bgcolor="red"></td>
+                  <% elsif cell.content.class == Ship  %>
+                    <td bgcolor="#505050"></td>  
+                  <% elsif cell.content.class == Water %> 
+                    <td bgcolor="#0066FF"></td>
+                  <% end %>
+                <% end %>    
+            </tr>
+          <% end %>
+  </table>
+  </div>
 
-    <div id='player-text'>
+  <div id='player-text'>
+  <% if GAME.winner == @player %>
+    You've Won!
+  <% elsif GAME.winner && GAME.winner != @player %>
+    You've Lost!
+  <% else %>
+    <% if GAME.turn == @player %>
+      It is your turn.
+      <p>
+      <form method='post' action='/play'>
+        <select name="x_coords">
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+          <option value="E">E</option>
+          <option value="F">F</option>
+          <option value="G">G</option>
+          <option value="H">H</option>
+          <option value="I">I</option>
+          <option value="J">J</option>
+        </select>          
+        <select name="y_coords">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+          <option value="6">6</option>
+          <option value="7">7</option>
+          <option value="8">8</option>
+          <option value="9">9</option>
+          <option value="10">10</option>
+        </select>
+        <input type="submit" value="FIRE!">
+      </form>
 
-    Hello world!
-    </div>
+      <% else %>
+        Waiting for other player to fire.
+      <% end %>
+    <% end %>
+  </div>
 
 </div>
 
@@ -38,27 +80,31 @@
 <div id='opponent-board'>
 <table style="border:1px; position:right">
 <tr><th colspan="11"> Opponent Board </th> </tr>
-  <tr>
-    <th></th>
-    <% letter = "A" %>
-    <% 10.times do %>
-    <th><%= letter %></th>
-    <% letter = letter.next %>
-    <% end %>
-  </tr>
-    <% rows_array = @opponent.board.grid.values %>
-        <% rows = rows_array.each_slice(10).map { |e| e } %>
-            <% rows.each_with_index do |array, index| %>
-                    <tr>
-                        <th> <%= index + 1 %> </th> 
-                            <% array.each do |cell| %>
-                                <% if cell.content.class == Water %> 
-                                    <td bgcolor="#0066FF"></td>
-                                <% elsif cell.content.class == Ship %>
-                                    <td bgcolor="#0066FF"></td>
-                                <% end %>
-                            <% end %>    
-                    </tr>
-            <% end %>
-</table>
+<tr>
+  <th></th>
+  <% letter = "A" %>
+  <% 10.times do %>
+  <th><%= letter %></th>
+  <% letter = letter.next %>
+  <% end %>
+</tr>
+  <% rows_array = @opponent.board.grid.values %>
+      <% rows = rows_array.each_slice(10).map { |e| e } %>
+          <% rows.each_with_index do |array, index| %>
+            <tr>
+              <th> <%= index + 1 %> </th> 
+                <% array.each do |cell| %>
+                  <% if cell.content.class == Water && cell.hit? %> 
+                    <td bgcolor="yellow"></td>
+                  <% elsif cell.content.class == Ship && cell.hit? %>
+                    <td bgcolor="red"></td>
+                  <% elsif cell.content.class == Ship  %>
+                    <td bgcolor="#0066FF"></td>  
+                  <% elsif cell.content.class == Water %> 
+                    <td bgcolor="#0066FF"></td>
+                              <% end %>
+                          <% end %>    
+                  </tr>
+          <% end %>
+  </table>
 </div>

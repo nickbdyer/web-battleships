@@ -8,6 +8,7 @@ h1 {
   font-size:40px;
   position:center;
   font-weight: bold;
+  margin: 15px;
 
 }
 
@@ -16,6 +17,7 @@ table, tr, td {
   border-spacing: 2px;
   border-color: gray;
   border-collapse: collapse;
+  margin-left: 15px;
 }
 
 tr {
@@ -31,26 +33,22 @@ body {
 }
 
 #player-container {
-  position: relative;
-  background-color: gray;
+  display: inline-block;
 }
+
 #player-board {
-  background-color: orange;
-  width: 600px;
-
-
+  width: 350px;
+  float: left;
 }
 
 
 
 #player-text {
-  background-color: red;
-  width: 400px;
-  display: inline;
-
+  width: 150px;
+  float: right;
+  margin-left: 100px;
 }
 
 #opponent-board {
   display: block;
-  background-color: yellow;
 }

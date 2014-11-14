@@ -84,7 +84,7 @@ class Battleships < Sinatra::Base
 
   get '/play' do
     @player = GAME.players.select { |player| player.object_id == session[:me] }.first
-
+    @opponent = GAME.players.select { |player| player.object_id != session[:me] }.first
     erb :play
   end
 

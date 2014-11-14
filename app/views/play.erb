@@ -1,6 +1,43 @@
-Play Game
+<div id='player-container'>
+    <div id='player-board'>
+    <table style="border:1px;">
+    <tr><th colspan="11"> Player Board </th> </tr>
+      <tr>
+        <th></th>
+        <% letter = "A" %>
+        <% 10.times do %>
+        <th><%= letter %></th>
+        <% letter = letter.next %>
+        <% end %>
+      </tr>
+        <% rows_array = @player.board.grid.values %>
+            <% rows = rows_array.each_slice(10).map { |e| e } %>
+                <% rows.each_with_index do |array, index| %>
+                        <tr>
+                            <th> <%= index + 1 %> </th> 
+                                <% array.each do |cell| %>
+                                    <% if cell.content.class == Water %> 
+                                        <td bgcolor="#0066FF"></td>
+                                    <% elsif cell.content.class == Ship %>
+                                        <td bgcolor="#505050"></td>
+                                    <% end %>
+                                <% end %>    
+                        </tr>
+                <% end %>
+    </table>
+    </div>
 
-<table style="border:1px;">
+    <div id='player-text'>
+
+    Hello world!
+    </div>
+
+</div>
+
+<p>
+<div id='opponent-board'>
+<table style="border:1px; position:right">
+<tr><th colspan="11"> Opponent Board </th> </tr>
   <tr>
     <th></th>
     <% letter = "A" %>
@@ -9,19 +46,19 @@ Play Game
     <% letter = letter.next %>
     <% end %>
   </tr>
-    <% rows_array = @player.board.grid.values %>
+    <% rows_array = @opponent.board.grid.values %>
         <% rows = rows_array.each_slice(10).map { |e| e } %>
             <% rows.each_with_index do |array, index| %>
                     <tr>
                         <th> <%= index + 1 %> </th> 
                             <% array.each do |cell| %>
                                 <% if cell.content.class == Water %> 
-                                    <td bgcolor="light-blue"></td>
+                                    <td bgcolor="#0066FF"></td>
                                 <% elsif cell.content.class == Ship %>
-                                    <td bgcolor="#505050"></td>
+                                    <td bgcolor="#0066FF"></td>
                                 <% end %>
                             <% end %>    
                     </tr>
             <% end %>
 </table>
-
+</div>

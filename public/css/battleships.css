@@ -7,6 +7,8 @@ h1 {
   letter-spacing:-1px;
   font-size:40px;
   position:center;
+  font-weight: bold;
+
 }
 
 table, tr, td {
@@ -22,4 +24,33 @@ tr {
 
 td {
   width:25px;
+}
+
+body {
+  font-family:sans-serif;
+}
+
+#player-container {
+  position: relative;
+  background-color: gray;
+}
+#player-board {
+  background-color: orange;
+  width: 600px;
+
+
+}
+
+
+
+#player-text {
+  background-color: red;
+  width: 400px;
+  display: inline;
+
+}
+
+#opponent-board {
+  display: block;
+  background-color: yellow;
 }

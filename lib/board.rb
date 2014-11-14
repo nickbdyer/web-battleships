@@ -34,7 +34,7 @@ class Board
 private
 
  	def next_coord(coord, orientation)
-		orientation == :horizontally ? next_horizontal(coord) : coord.next
+		orientation == :horizontally ? next_horizontal(coord) : coord[0] + coord[1].next
 	end
 
 	def next_horizontal(coord)

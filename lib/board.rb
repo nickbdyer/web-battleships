@@ -10,7 +10,7 @@ class Board
 
 	def place(ship, coord, orientation = :vertically)
 		coords = [coord]
-		(ship.size - 1).times{coords << next_coord(coords.last, orientation)}
+		(ship.size - 1).times{coords << next_coord(coords.last, orientation).to_sym}
 		put_on_grid_if_possible(coords, ship)
 	end
 
@@ -34,7 +34,7 @@ class Board
 private
 
  	def next_coord(coord, orientation)
-		orientation == :horizontally ? next_horizontal(coord) : coord[0] + coord[1].next
+		orientation == :vertically ? coord[0] + coord[1].next : next_horizontal(coord)
 	end
 
 	def next_horizontal(coord)

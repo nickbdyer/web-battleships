@@ -8,4 +8,5 @@ group :development, :test do
   gem 'cucumber-sinatra'
   gem 'launchy'
   gem 'capybara'
+  gem 'codeclimate-test-reporter', require: nil
 end

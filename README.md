@@ -1,5 +1,10 @@
 #Web Battleships 
 
+[![Code
+Climate](https://codeclimate.com/github/nickbdyer/web-battleships/badges/gpa.svg)](https://codeclimate.com/github/nickbdyer/web-battleships)
+[![Test
+Coverage](https://codeclimate.com/github/nickbdyer/web-battleships/badges/coverage.svg)](https://codeclimate.com/github/nickbdyer/web-battleships)
+
 Week 3 at Makers Academy
 
 ##The Problem

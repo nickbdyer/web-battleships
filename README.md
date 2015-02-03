@@ -41,15 +41,15 @@ to the project hosted on Heroku.
 
 ##Images
 Registration: 
-![alt text](https://github.com/nickbdyer/web-battleships/images/signup.png
+![alt text](images/signup.png
 "Sign Up")
 
 Placing Ships: 
-![alt text](https://github.com/nickbdyer/web-battleships/images/placeships.png
+![alt text](images/placeships.png
 "Place Ships")
 
 Playing: 
-![alt text](https://github.com/nickbdyer/web-battleships/images/gameplay.png
+![alt text](images/gameplay.png
 "In Game Footage!")
 
 ##Improvements

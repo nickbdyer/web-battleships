@@ -36,13 +36,6 @@ class Battleships < Sinatra::Base
 
   post '/waiting' do
 
-    # puts '==' * 30
-    # puts GAME.player1.object_id
-    # puts GAME.player2.object_id
-    # puts GAME.players.map{|player| player.object_id}.inspect
-
-    # puts session[:me].inspect
-
     @player = GAME.players.select { |player| player.object_id == session[:me] }.first
 
     patrol_boat                  = Ship.patrol_boat

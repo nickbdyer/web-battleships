@@ -6,10 +6,6 @@ class Battleships < Sinatra::Base
   enable :sessions
   GAME = Game.new
 
-  get '/' do
-    erb :index
-  end
-
   get '/reset_game' do
     GAME = Game.new
   end

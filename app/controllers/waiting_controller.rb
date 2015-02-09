@@ -1,8 +1,10 @@
 class Battleships < Sinatra::Base
 
-  post '/waiting' do
-
+  before '/waiting' do 
     @player = GAME.players.select { |player| player.object_id == session[:me] }.first
+  end
+
+  post '/waiting' do
 
     patrol_boat                  = Ship.patrol_boat
     patrol_boat_origin           = (params[:ship_one_xaxis] + params[:ship_one_yaxis]).to_sym
@@ -37,7 +39,6 @@ class Battleships < Sinatra::Base
 
   get '/waiting' do
     redirect('/play') if GAME.ready?
-    @player = GAME.players.select { |player| player.object_id == session[:me] }.first
     erb :waiting, :layout => :layout_refresh
   end    
 

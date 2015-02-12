@@ -7,6 +7,9 @@ require_relative '../lib/ship'
 require_relative '../lib/water'
 
 require_relative './controllers/application_controller'
+require_relative './controllers/homepage_controller'
 require_relative './controllers/waiting_controller'
 require_relative './controllers/play_controller'
 require_relative './controllers/user_controller'
+
+require_relative './helpers/application_helper'

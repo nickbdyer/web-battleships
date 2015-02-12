@@ -6,30 +6,11 @@ class Battleships < Sinatra::Base
 
   post '/waiting' do
 
-    patrol_boat                  = Ship.patrol_boat
-    patrol_boat_origin           = (params[:ship_one_xaxis] + params[:ship_one_yaxis]).to_sym
-    patrol_boat_orientation      = params[:ship_one_orientation].to_sym
-    @player.board.place(Ship.patrol_boat, patrol_boat_origin, patrol_boat_orientation)
-
-    submarine                    = Ship.submarine
-    submarine_origin             = (params[:ship_two_xaxis] + params[:ship_two_yaxis]).to_sym
-    submarine_orientation        = params[:ship_two_orientation].to_sym
-    @player.board.place(Ship.submarine, submarine_origin, submarine_orientation)
-
-    destroyer                    = Ship.destroyer
-    destroyer_origin             = (params[:ship_three_xaxis] + params[:ship_three_yaxis]).to_sym
-    destroyer_orientation        = params[:ship_three_orientation].to_sym
-    @player.board.place(Ship.destroyer, destroyer_origin, destroyer_orientation)
-    
-    battleship                   = Ship.battleship
-    battleship_origin            = (params[:ship_four_xaxis] + params[:ship_four_yaxis]).to_sym
-    battleship_orientation       = params[:ship_four_orientation].to_sym
-    @player.board.place(Ship.battleship, battleship_origin, battleship_orientation)
-
-    aircraft_carrier             = Ship.aircraft_carrier
-    aricraft_carrier_origin      = (params[:ship_five_xaxis] + params[:ship_five_yaxis]).to_sym
-    aricraft_carrier_orientation = params[:ship_five_orientation].to_sym
-    @player.board.place(Ship.aircraft_carrier, aricraft_carrier_origin, aricraft_carrier_orientation)
+    place_patrol_boat(@player)
+    place_submarine(@player)
+    place_destroyer(@player)
+    place_battleship(@player)
+    place_aircraft_carrier(@player)
 
     redirect('/play') if GAME.ready?
 

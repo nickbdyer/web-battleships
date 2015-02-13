@@ -32,3 +32,12 @@ def place_aircraft_carrier(player)
   aircraft_carrier_orientation = params[:ship_five_orientation].to_sym
   player.board.place(Ship.aircraft_carrier, aircraft_carrier_origin, aircraft_carrier_orientation)
 end
+
+def place_ships(player)
+  place_patrol_boat(player)
+  place_submarine(player)
+  place_destroyer(player)
+  place_battleship(player)
+  place_aircraft_carrier(player)
+end
+

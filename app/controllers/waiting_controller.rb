@@ -6,11 +6,7 @@ class Battleships < Sinatra::Base
 
   post '/waiting' do
 
-    place_patrol_boat(@player)
-    place_submarine(@player)
-    place_destroyer(@player)
-    place_battleship(@player)
-    place_aircraft_carrier(@player)
+    place_ships(@player)
 
     redirect('/play') if GAME.ready?
 

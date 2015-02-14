@@ -3,10 +3,7 @@ class Battleships < Sinatra::Base
   post '/register_player' do
     session[:game_id] = GAME.object_id
 
-    @player = Player.new
-    @player.name = params[:player_name]
-    @player.board = Board.new(Cell, Water)
-    GAME.add_player(@player)
+    add_player_to_game(GAME)
 
     session[:me] = @player.object_id
   

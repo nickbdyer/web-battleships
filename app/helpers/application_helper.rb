@@ -41,3 +41,9 @@ def place_ships(player)
   place_aircraft_carrier(player)
 end
 
+def add_player_to_game(game)
+  @player = Player.new
+  @player.name = params[:player_name]
+  @player.board = Board.new(Cell, Water)
+  game.add_player(@player)
+end

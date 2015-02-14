@@ -5,13 +5,9 @@ class Battleships < Sinatra::Base
   end
 
   post '/waiting' do
-
     place_ships(@player)
-
     redirect('/play') if GAME.ready?
-
     erb :waiting, :layout => :layout_refresh
-
   end
 
   get '/waiting' do

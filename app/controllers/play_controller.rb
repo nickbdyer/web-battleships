@@ -11,13 +11,8 @@ class Battleships < Sinatra::Base
 
   post '/play' do
     shot_coords = (params[:x_coords] + params[:y_coords]).to_sym
-    begin
       GAME.shoots(shot_coords) 
       redirect '/play'
-    rescue
-      redirect '/play'
-    end
-    
   end
 
 end
